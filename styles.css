@@ -1,0 +1,182 @@
+:root {
+  --arc-boost-radius: 1rem;
+  --arc-boost-padding: 1rem;
+  --arc-boost-background-1-raw: 220, 5%, 100%;
+  --arc-boost-background-1: hsl(var(--arc-boost-background-1-raw));
+  --arc-boost-background-1-fade: hsl(var(--arc-boost-background-1-raw), 0);
+
+  --arc-boost-background-2-raw: 220, 5%, 93%;
+  --arc-boost-background-2: hsl(var(--arc-boost-background-2-raw));
+}
+html[data-darkreader-scheme='dark'] {
+  --arc-boost-background-1-raw: 220, 5%, 10%;
+  --arc-boost-background-2-raw: 220, 5%, 17%;
+}
+/* general */
+body {
+  background-color: var(--arc-boost-background-1) !important;
+}
+.Day-styles__root,
+.ic-Dashboard-header__layout,
+.ic-app-header__menu-list-item.ic-app-header__menu-list-item--active
+  .ic-app-header__menu-list-link {
+  background-color: var(--arc-boost-background-1) !important;
+}
+/* arc boost UI */
+.arc-boost-description {
+  display: block;
+  width: auto;
+  height: auto;
+  max-height: 200px;
+  overflow: scroll;
+}
+.arc-boost-command-bar-wrapper {
+  /* this is what centers your element in the fixed wrapper*/
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  flex-flow: column nowrap;
+  justify-content: center; /* aligns on vertical for column */
+  align-items: center; /* aligns on horizontal for column */
+
+  /* just for styling to see the limits */
+  box-sizing: border-box;
+
+  z-index: 999999;
+  background: hsl(0, 0%, 0%, 0.5);
+}
+
+.arc-boost-command-bar {
+  display: flex;
+  width: max(400px, 40vw);
+  height: max(400px, 40vh);
+
+  /* Just for styling */
+  background-color: var(--arc-boost-background-1);
+  border-radius: var(--arc-boost-radius);
+  box-shadow: 0 0 20px 0 hsl(0, 0%, 0%, 0.5);
+  padding: var(--arc-boost-padding);
+  box-sizing: border-box;
+  flex-direction: column;
+}
+.arc-boost-command-bar > input[type='text'] {
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: var(--arc-boost-radius);
+  padding: var(--arc-boost-padding);
+  box-sizing: border-box;
+  background: var(--arc-boost-background-2);
+  font-size: 1rem;
+  height: calc(1rem + var(--arc-boost-padding) * 2);
+}
+.arc-boost-command-bar > ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--arc-boost-padding);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: scroll;
+  height: 100%;
+}
+.arc-boost-command-bar > ul > li {
+  display: flex;
+  flex-direction: column;
+  gap: var(--arc-boost-padding);
+  border: none;
+  background: var(--arc-boost-background-1);
+  border-radius: var(--arc-boost-radius);
+  padding: var(--arc-boost-padding);
+  font-size: 1rem;
+}
+
+.arc-boost-command-bar > ul > :is(li.selected, li:hover) {
+  background: var(--arc-boost-background-2);
+}
+ol.Grouping-styles__items {
+  display: flex;
+  border: none;
+  flex-direction: column;
+  gap: var(--arc-boost-padding);
+}
+.planner-item {
+  display: grid !important;
+  grid-template-areas:
+    'a d'
+    'b d'
+    'c d';
+  grid-template-columns: 40px auto;
+  grid-template-rows: min-content 1fr min-content;
+}
+.planner-completed-items,
+.planner-item {
+  border: none !important;
+  background: var(--arc-boost-background-2);
+  border-radius: var(--arc-boost-radius);
+}
+/* have dark background color for dark reader */
+.planner-item > div,
+.planner-completed-items > div {
+  display: block;
+  margin: 0 !important;
+}
+/* Put notification badge, check, and icon to the side */
+.planner-item > PlannerItem-styles__completed {
+  grid-area: a;
+}
+.planner-item > .NotificationBadge-styles__activityIndicator {
+  grid-area: b;
+}
+.planner-item > .PlannerItem-styles__icon {
+  grid-area: c;
+}
+.planner-item > .PlannerItem-styles__layout {
+  grid-area: d;
+}
+
+.planner-completed-items > .CompletedItemsFacade-styles__contentPrimary > div {
+  display: flex;
+  align-items: center;
+}
+
+/* fix the side image */
+.planner-grouping {
+  display: flex;
+  gap: var(--arc-boost-padding);
+  margin: 0 !important;
+}
+.planner-grouping > a {
+  border-radius: var(--arc-boost-radius) !important;
+  padding: 0 !important;
+  overflow: hidden;
+}
+.planner-grouping > a > .Grouping-styles__title {
+  padding: 0.25rem 0.5rem;
+  margin: calc(var(--arc-boost-padding) / 2) !important;
+  background: hsl(0, 0%, 0%, 0.3) !important;
+  border-radius: var(--arc-boost-radius) var(--arc-boost-radius);
+  flex: none !important;
+}
+:not(.Grouping-styles__small, .Grouping-styles__medium)
+  .Grouping-styles__title {
+  color: white;
+}
+/* when minimized */
+.planner-grouping > a > .Grouping-styles__title::after {
+  background: none !important;
+}
+
+/* when multiple class assignments in one day */
+.planner-day > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--arc-boost-padding);
+}
+
+.Day-styles__secondary {
+  margin-bottom: var(--arc-boost-padding);
+}
